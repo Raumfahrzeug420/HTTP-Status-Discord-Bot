@@ -8,7 +8,7 @@ Clone this repository. CMD: ```git clone https://github.com/Raumfahrzeug420/HTTP
 
 Create a Discord Bot: https://discord.com/developers/applications
 
-Install the required dependencies: CMD: ```python3 -m pip install discord``` & ```python3 -m pip install requests```
+Install the required dependencies: CMD: ```python3 -m pip install discord```
 
 Edit the Config: ```config.py```
 
