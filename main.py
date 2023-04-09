@@ -8,8 +8,7 @@ client = commands.Bot(command_prefix=";",intents=intents)
 
 @client.event
 async def on_ready():
-    status = "Checking..."
-    await client.change_presence(activity=discord.Game(name=f"{server} Status: {status}"))
+    await client.change_presence(activity=discord.Game(name=f"{server} Status: Checking..."))
     try:
         await client.tree.sync()
     except Exception as Error:
@@ -17,7 +16,6 @@ async def on_ready():
     print('[SUCCESS] : Logged in as ' + format(client.user))
     await ServerCheckLoop.start()
 
-# RobloxGameClient
 @tasks.loop(seconds=int(seconds))
 async def ServerCheckLoop():
     print("Checking Server Status...")
@@ -42,7 +40,7 @@ async def ping(ctx):
 async def status(ctx):
     param = "-n" if platform.system().lower()=="windows" else "-c"
     check = os.system(f"ping {param} 1 {server}")
-    if check == "0":
+    if check == 0:
         status = "Online"
     else:
         status = "Offline!" 
@@ -56,7 +54,7 @@ async def ping(interaction: discord.Interaction):
 async def ping(interaction: discord.Interaction):
     param = "-n" if platform.system().lower()=="windows" else "-c"
     check = os.system(f"ping {param} 1 {server}")
-    if check == "0":
+    if check == 0:
         status = "Online"
     else:
         status = "Offline!" 
