@@ -2,9 +2,14 @@ import os
 import discord
 import platform
 from discord.ext import tasks, commands
-from config import seconds, server, token, channelid, offlinename, onlinename
+from config import seconds, server, token, channelid, offlinename, onlinename, prefix
 intents = discord.Intents.all()
-client = commands.Bot(command_prefix=";",intents=intents)
+client = commands.Bot(command_prefix=prefix,intents=intents)
+
+dir = os.path.dirname(os.path.realpath(__file__))
+wdir = os.getcwd()
+if dir != wdir:
+    os.chdir(dir)
 
 @client.event
 async def on_ready():
@@ -13,7 +18,7 @@ async def on_ready():
         await client.tree.sync()
     except Exception as Error:
         print(Error)
-    print('[SUCCESS] : Logged in as ' + format(client.user))
+    print(f'[SUCCESS] : Logged in as {client.user}\n')
     await ServerCheckLoop.start()
 
 @tasks.loop(seconds=int(seconds))
@@ -23,11 +28,11 @@ async def ServerCheckLoop():
     param = "-n" if platform.system().lower()=="windows" else "-c"
     check = os.system(f"ping {param} 1 {server}")
     if check == 0:
-        print("[PASSED] Server is online.")
+        print("\n[PASSED] Server is online.\n")
         await mainChannel.edit(name = onlinename)
         status = "Online."
     else:
-        print("[FAILED] Server is offline!")
+        print("\n[FAILED] Server is offline!\n")
         await mainChannel.edit(name = offlinename)
         status = "Offline!"
     await client.change_presence(activity=discord.Game(name=f"{server} Status: {status}"))
