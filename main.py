@@ -1,8 +1,17 @@
-import os
+import os, platform
+def clear():
+    if platform.system().lower()=="windows":
+        os.system('cls')
+    else:
+        os.system('clear')
+if platform.system().lower()=="windows":
+    os.system("py -m pip install discord"), clear()
+else:
+    os.system("python3 -m pip install discord"), clear()
 import discord
-import platform
 from discord.ext import tasks, commands
 from config import seconds, server, token, channelid, offlinename, onlinename, prefix
+
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix=prefix,intents=intents)
 
