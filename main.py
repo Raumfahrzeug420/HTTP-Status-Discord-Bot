@@ -4,10 +4,8 @@ def clear():
         os.system('cls')
     else:
         os.system('clear')
-if platform.system().lower()=="windows":
-    os.system("py -m pip install discord"), clear()
-else:
-    os.system("python3 -m pip install discord"), clear()
+os.system("python3 -m pip install discord"), clear()
+os.system("python3 -m pip install requests"), clear()
 import discord
 from discord.ext import tasks, commands
 from config import seconds, server, token, channelid, offlinename, onlinename, prefix
