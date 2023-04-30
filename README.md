@@ -10,6 +10,4 @@ Create a Discord Bot: https://discord.com/developers/applications
 
 Install the required dependencies: CMD: ```python3 -m pip install discord```
 
-Edit the Config: ```config.py```
-
 Start the bot from the project folder: ```main.py```
