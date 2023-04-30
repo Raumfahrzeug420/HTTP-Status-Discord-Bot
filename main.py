@@ -17,6 +17,19 @@ except ImportError:
     
 import discord
 from discord.ext import tasks, commands
+
+if str(os.path.exists("config.py")) == "False":
+    print("config.py not detected! \n Creating config.py.")
+    token = input("Token: ")
+    channelid = input("ChannelID: ")
+    server = input("What to Ping: ")
+    seconds = input("(How often to ping) Seconds: ")
+    offlinename = input("What to name the channel when offline: ")
+    onlinename = input("What to name the channel when online: ")
+    prefix = input("Prefix: ")
+    with open("config.py", "w") as file:
+        file.write(f'token = "{token}" \nchannelid = "{channelid}" \nserver = "{server}" \nseconds = "{seconds}" \nprefix = "{prefix}" \nofflinename = "{offlinename}" \nonlinename = "onlinename"')
+    file.close
 from config import seconds, server, token, channelid, offlinename, onlinename, prefix
 
 intents = discord.Intents.all()
@@ -65,7 +78,7 @@ async def status(ctx):
         status = "Online"
     else:
         status = "Offline!" 
-    await ctx.send(f"Server Status: {status}")]
+    await ctx.send(f"Server Status: {status}")
 
 @ServerCheckLoop.before_loop
 async def before_some_task():
