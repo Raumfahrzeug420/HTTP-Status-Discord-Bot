@@ -30,7 +30,7 @@ if str(os.path.exists("config.py")) == "False":
     with open("config.py", "w") as file:
         file.write(f'token = "{token}" \nchannelid = "{channelid}" \nserver = "{server}" \nseconds = "{seconds}" \nprefix = "{prefix}" \nofflinename = "{offlinename}" \nonlinename = "onlinename"')
     file.close
-from config import seconds, server, token, channelid, offlinename, onlinename, prefix
+from config import *
 
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix=prefix,intents=intents)
